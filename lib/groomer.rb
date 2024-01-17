@@ -2,8 +2,9 @@ class Groomer
   attr_reader :name,
               :customers
   
-  def initialize(attributes)
+  def initialize(attributes, customers = [] )
     @name = attributes.fetch(:name)
-    @customers = []
+    @customers = customers
   end
+  
 end

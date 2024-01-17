@@ -21,6 +21,17 @@ RSpec.describe Customer do
       expect(@joel.id).to eq(2)
       expect(@joel.pets).to eq([])
     end
+    
+    it 'can initialize a customer with pets' do
+      molly = Pet.new({name: "Molly", type: :cat, age: 5})
+      billy = Customer.new("Billy", 3, [molly])
+      
+      expect(molly).to be_a(Pet)
+      expect(billy).to be_a(Customer)
+      
+      expect(billy.pets).to eq([molly])
+      expect(billy.pets.count).to eq(1)
+    end
   end
   
   describe '#adopt' do
