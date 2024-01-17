@@ -7,4 +7,8 @@ class Groomer
     @customers = customers
   end
   
+  def add_customer(customer)
+    @customers << customer
+  end
+  
 end
