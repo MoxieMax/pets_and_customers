@@ -8,4 +8,8 @@ class Customer
     @id = id
     @pets = []
   end
+  
+  def adopt(pet)
+    @pets << pet
+  end
 end
