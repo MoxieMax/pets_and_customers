@@ -36,5 +36,21 @@ RSpec.describe Customer do
     end
   end
   
+  describe '#outstanding_balance' do
+    it 'defaults to 0' do
+    end
+  end
+  
+  describe '#charge' do
+    it 'adds a balance to outstanding balance' do
+      expect(@joel.outstanding_balance).to eq(0)
+      
+      @joel.charge(15)
+      @joel.charge(7)
+      
+      expect(@joel.outstanding_balance).to eq(22)
+    end
+  end
+  
 end
 
