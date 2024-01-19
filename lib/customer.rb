@@ -18,4 +18,8 @@ class Customer
   def charge(number)
     @outstanding_balance += number
   end
+  
+  def count_pets(pet_type)
+    @pets.count { |pet| pet.type == pet_type }
+  end
 end

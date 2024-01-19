@@ -38,10 +38,9 @@ RSpec.describe Groomer do
       expect(@pet41).to be_a(Pet)
       expect(@cus4).to be_a(Customer)
       expect(@wags).to be_a(Groomer)
-      s
+      
       expect(@wags.customers).to eq([@cus4])
       expect(@wags.customers.count).to eq(1)
-      # binding.pry
     end
   end
   
@@ -52,6 +51,40 @@ RSpec.describe Groomer do
       @bark.add_customer(@cus1)
       
       expect(@bark.customers).to eq([@cus1])
+    end
+    
+    it 'can add multiple customers in an array' do
+      @bark.add_customer([@cus2, @cus3])
+      
+      expect(@bark.customers).to eq([@cus2, @cus3])
+    end
+  end
+  
+  describe '#pet_count' do
+    it 'can return a count of the customer pets by type' do
+      expect(@wags.pet_count(:cat)).to eq(1)
+      expect(@wags.pet_count(:dog)).to eq(0)
+      expect(@wags.pet_count(:snake)).to eq(0)
+      
+      pet42 = Pet.new({name: "Sheev", type: :snake, age: 1})
+      
+      @cus4.adopt(pet42)
+      
+      expect(@wags.pet_count(:snake)).to eq(1)
+    end
+  end
+  
+  describe '#outstanding_balances' do
+    it 'returns customers with an outstanding balance' do
+      @bark.add_customer([@cus1, @cus2, @cus3])
+      
+      @cus2.charge(5)
+      @cus3.charge(10)
+      @cus4.charge(15)
+      
+      expect(@bark.outstanding_balances).to eq([@cus2, @cus3])
+      expect(@wags.outstanding_balances).to eq([@cus1])
+      
     end
   end
   

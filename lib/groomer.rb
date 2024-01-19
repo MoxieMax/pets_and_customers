@@ -9,6 +9,14 @@ class Groomer
   
   def add_customer(customer)
     @customers << customer
+    @customers.flatten!
   end
   
+  def pet_count(type)
+    @customers.sum { |customer| customer.count_pets(type) }
+  end
+  
+  def outstanding_balances
+    
+  end
 end
