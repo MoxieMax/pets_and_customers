@@ -7,7 +7,7 @@ RSpec.describe Groomer do
   before :each do
     @pet11   = Pet.new({name: "Samson", type: :dog, age: 3})
     @pet12   = Pet.new({name: "Lucy", type: :cat, age: 12})
-    @cus1    = Customer.new("Joel", 2, [@pet11, @pet12])
+    @cus1    = Customer.new("Joel", 1, [@pet11, @pet12])
     
     @pet21   = Pet.new({name: "Moxie", type: :cat, age: 8})
     @pet22   = Pet.new({name: "Chuchu", type: :cat, age: 4})
@@ -15,10 +15,10 @@ RSpec.describe Groomer do
     
     @pet31   = Pet.new({name: "Daisy", type: :dog, age: 9})
     @pet32   = Pet.new({name: "Hobbes", type: :cat, age: 9})
-    @cus3    = Customer.new("Max", 2, [@pet31, @pet32])
+    @cus3    = Customer.new("Max", 3, [@pet31, @pet32])
     
     @pet41   = Pet.new({name: "Molly", type: :cat, age: 5})
-    @cus4    = Customer.new("Billy", 3, [@pet41])
+    @cus4    = Customer.new("Billy", 4, [@pet41])
     
     @bark    = Groomer.new({name: "Bark n Snip"})
     @wags    = Groomer.new({name: "Wags"}, [@cus4])
@@ -75,17 +75,21 @@ RSpec.describe Groomer do
   end
   
   describe '#outstanding_balances' do
-    it 'returns customers with an outstanding balance' do
+    before :each do
       @bark.add_customer([@cus1, @cus2, @cus3])
       
       @cus2.charge(5)
       @cus3.charge(10)
       @cus4.charge(15)
-      
+    end
+    
+    it 'returns customers with an outstanding balance' do
       expect(@bark.outstanding_balances).to eq([@cus2, @cus3])
-      expect(@wags.outstanding_balances).to eq([@cus1])
-      
+      expect(@wags.outstanding_balances).to eq([@cus4])
+    end
+    
+    it 'does not return customers with no balance' do
+      expect(@bark.outstanding_balances).to_not include([@cus1])
     end
   end
-  
 end

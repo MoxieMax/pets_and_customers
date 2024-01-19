@@ -17,6 +17,7 @@ class Groomer
   end
   
   def outstanding_balances
-    
+    # binding.pry
+    @customers.find_all { |customer| customer.outstanding_balance > 0 }
   end
 end
