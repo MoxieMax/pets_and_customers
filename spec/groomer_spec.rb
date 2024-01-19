@@ -88,7 +88,7 @@ RSpec.describe Groomer do
       expect(@wags.outstanding_balances).to eq([@cus4])
     end
     
-    it 'does not return customers with no balance' do
+    it 'does not return customers with a 0 balance' do
       expect(@bark.outstanding_balances).to_not include([@cus1])
     end
   end
