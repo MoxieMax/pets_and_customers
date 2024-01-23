@@ -21,7 +21,7 @@ RSpec.describe DayCare do
     @cus4    = Customer.new("Billy", 4, [@pet41])
     
     @fine    = DayCare.new({name: "Fine Whine and Lickers"})
-    @bark    = DayCare.new({name: "Barking Bad"})
+    @bark    = DayCare.new({name: "Barking Bad"}, [@cus4])
   end
   
   describe 'initialize' do
@@ -37,7 +37,25 @@ RSpec.describe DayCare do
       
       expect(@bark.name).to eq("Barking Bad")
       expect(@bark.name).to_not eq("Fine Whine and Lickers")
-      expect(@bark.customers).to eq([])
+      expect(@bark.customers).to eq([@cus4])
+    end
+  end
+  
+  describe '#add_customer' do
+    it 'adds a customer to the customers array' do
+      expect(@fine.customers).to eq([])
+      
+      @fine.add_customer(@cus1)
+      
+      expect(@fine.customers).to eq([@cus1])
+    end
+    
+    it 'can add multiple customers at once' do
+      expect(@fine.customers).to eq([])
+      
+      @fine.add_customer([@cus2, @cus3])
+      
+      expect(@fine.customers).to eq([@cus2, @cus3])
     end
   end
 end
