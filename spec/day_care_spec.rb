@@ -86,5 +86,16 @@ RSpec.describe DayCare do
         expect(@bark.find_customer(4)).to_not eq([@cus3])
       end
     end
+    
+    describe '#hungry_animals' do
+      it 'returns a list of animals that have not been fed' do
+        expect(@fine.hungry_animals).to eq([@pet11, @pet12, @pet21, @pet22])
+        
+        @pet11.feed
+        @pet21.feed
+        
+        expect(@fine.hungry_animals).to eq([@pet12, @pet22])
+      end
+    end
   end
 end
