@@ -60,24 +60,27 @@ RSpec.describe DayCare do
     end
   end
   
-  describe '#customer_pets' do
+  describe 'everything after #add_customer' do
     before :each do
       @fine.add_customer([@cus1, @cus2])
       @bark.add_customer([@cus4])
     end
+  
+    describe '#customer_pets' do
+      it 'lists pets for a specified customer' do
+        expect(@fine.customer_pets(@cus1)).to eq([@pet11, @pet12])
+        expect(@fine.customer_pets(@cus2)).to eq([@pet21, @pet22])
+        
+        expect(@bark.customer_pets(@cus3)).to eq([@pet31, @pet32])
+        expect(@bark.customer_pets(@cus4)).to eq([@pet41])
+      end
+    end
     
-    # it 'test the before :each is working' do
-    #   expect(@fine.customers).to eq([@cus1, @cus2])
-    #   expect(@bark.customers).to eq([@cus3, @cus4])
-    # end 
-    
-    it 'lists pets for a specified customer' do
-      expect(@fine.customer_pets(@cus1)).to eq([@pet11, @pet12])
-      expect(@fine.customer_pets(@cus2)).to eq([@pet21, @pet22])
-      
-      expect(@bark.customer_pets(@cus3)).to eq([@pet31, @pet32])
-      expect(@bark.customer_pets(@cus4)).to eq([@pet41])
+    describe '#find_customer' do
+      it 'returns a customer with a given id' do
+        expect(@fine.find_customer(1)).to eq(@cus1)
+        expect(@fine.find_customer(2)).to eq(@cus2)
+      end
     end
   end
-  
 end
