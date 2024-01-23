@@ -19,4 +19,12 @@ class DayCare
   def find_customer(id)
     @customers.select {|customer| customer.id == id }
   end
+  
+  def all_pets
+    
+  end
+  
+  def hungry_pets
+    
+  end
 end
