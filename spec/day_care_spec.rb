@@ -21,7 +21,7 @@ RSpec.describe DayCare do
     @cus4    = Customer.new("Billy", 4, [@pet41])
     
     @fine    = DayCare.new({name: "Fine Whine and Lickers"})
-    @bark    = DayCare.new({name: "Barking Bad"}, [@cus4])
+    @bark    = DayCare.new({name: "Barking Bad"}, [@cus3])
   end
   
   describe 'initialize' do
@@ -37,26 +37,47 @@ RSpec.describe DayCare do
       
       expect(@bark.name).to eq("Barking Bad")
       expect(@bark.name).to_not eq("Fine Whine and Lickers")
-      expect(@bark.customers).to eq([@cus4])
+      expect(@bark.customers).to eq([@cus3])
     end
   end
   
   describe '#add_customer' do
     it 'adds a customer to the customers array' do
       expect(@fine.customers).to eq([])
-      expect(@bark.customers).to eq([@cus4])
+      expect(@bark.customers).to eq([@cus3])
       @fine.add_customer(@cus1)
       
       expect(@fine.customers).to eq([@cus1])
-      expect(@bark.customers).to eq([@cus4])
+      expect(@bark.customers).to eq([@cus3])
     end
     
     it 'can add multiple customers at once' do
       expect(@fine.customers).to eq([])
       
-      @fine.add_customer([@cus2, @cus3])
+      @fine.add_customer([@cus1, @cus2])
       
-      expect(@fine.customers).to eq([@cus2, @cus3])
+      expect(@fine.customers).to eq([@cus1, @cus2])
     end
   end
+  
+  describe '#customer_pets' do
+    before :each do
+      @fine.add_customer([@cus1, @cus2])
+      @bark.add_customer([@cus4])
+    end
+    
+    # it 'test the before :each is working' do
+    #   expect(@fine.customers).to eq([@cus1, @cus2])
+    #   expect(@bark.customers).to eq([@cus3, @cus4])
+    # end 
+    
+    it 'lists pets for a specified customer' do
+      expect(@fine.customer_pets(@cus1)).to eq([@pet11, @pet12])
+      expect(@fine.customer_pets(@cus2)).to eq([@pet21, @pet22])
+      
+      expect(@bark.customer_pets(@cus3)).to eq([@pet31, @pet32])
+      expect(@bark.customer_pets(@cus4)).to eq([@pet41])
+    end
+  end
+  
 end

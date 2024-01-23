@@ -12,4 +12,7 @@ class DayCare
     @customers.flatten!
   end
   
+  def customer_pets(customer)
+    customer.pets
+  end
 end
