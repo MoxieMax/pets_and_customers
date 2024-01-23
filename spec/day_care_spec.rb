@@ -44,10 +44,11 @@ RSpec.describe DayCare do
   describe '#add_customer' do
     it 'adds a customer to the customers array' do
       expect(@fine.customers).to eq([])
-      
+      expect(@bark.customers).to eq([@cus4])
       @fine.add_customer(@cus1)
       
       expect(@fine.customers).to eq([@cus1])
+      expect(@bark.customers).to eq([@cus4])
     end
     
     it 'can add multiple customers at once' do
