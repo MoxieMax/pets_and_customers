@@ -32,8 +32,11 @@ RSpec.describe DayCare do
     
     it 'has attributes' do
       expect(@fine.name).to eq("Fine Whine and Lickers")
+      expect(@fine.name).to_not eq("Barking Bad")
       expect(@fine.customers).to eq([])
+      
       expect(@bark.name).to eq("Barking Bad")
+      expect(@bark.name).to_not eq("Fine Whine and Lickers")
       expect(@bark.customers).to eq([])
     end
   end
