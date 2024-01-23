@@ -78,8 +78,12 @@ RSpec.describe DayCare do
     
     describe '#find_customer' do
       it 'returns a customer with a given id' do
-        expect(@fine.find_customer(1)).to eq(@cus1)
-        expect(@fine.find_customer(2)).to eq(@cus2)
+        expect(@fine.find_customer(1)).to eq([@cus1])
+        expect(@fine.find_customer(2)).to eq([@cus2])
+        expect(@bark.find_customer(3)).to eq([@cus3])
+        expect(@bark.find_customer(4)).to eq([@cus4])
+        
+        expect(@bark.find_customer(4)).to_not eq([@cus3])
       end
     end
   end
