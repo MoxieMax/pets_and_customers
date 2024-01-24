@@ -9,7 +9,7 @@ class DayCare
   
   def add_customer(customer)
     @customers << customer
-    @customers.flatten!
+    @customers.flatten! #allows for more than one customer to be added at one time.
   end
   
   def customer_pets(customer)
