@@ -5,7 +5,7 @@ You have been contracted to build a software application for a pet day care comp
 <!-- * Each Day Care has a unique name, as well as a way to read that data. -->
 <!-- * Each Day Care has multiple customers, and each of those customers can have multiple pets. -->
 <!-- * A Day Care can find a customer by the customer's id -->
-* A Day Care can list all pets that are unfed
+<!-- * A Day Care can list all pets that are unfed -->
 
 
 ## Iteration 4

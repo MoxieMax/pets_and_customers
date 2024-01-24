@@ -96,7 +96,7 @@ RSpec.describe DayCare do
     end
     
     describe '#hungry_pets' do
-      xit 'returns a list of animals that have not been fed' do
+      it 'returns a list of animals that have not been fed' do
         expect(@fine.hungry_pets).to eq([@pet11, @pet12, @pet21, @pet22])
         
         @pet11.feed
